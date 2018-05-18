@@ -1,13 +1,13 @@
 <?php
 
-namespace nemmo\attachments\migrations;
+namespace mazpaijo\attachments\migrations;
 
 use yii\db\Migration;
 use yii\db\Schema;
 
 class m150127_040544_add_attachments extends Migration
 {
-    use \nemmo\attachments\ModuleTrait;
+    use \mazpaijo\attachments\ModuleTrait;
 
     public function up()
     {

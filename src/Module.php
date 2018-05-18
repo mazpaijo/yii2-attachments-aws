@@ -1,8 +1,7 @@
 <?php
+namespace mazpaijo\attachments;
 
-namespace nemmo\attachments;
-
-use nemmo\attachments\models\File;
+use mazpaijo\attachments\models\File;
 use yii\base\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -10,7 +9,7 @@ use yii\i18n\PhpMessageSource;
 
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'nemmo\attachments\controllers';
+    public $controllerNamespace = 'mazpaijo\attachments\controllers';
 
     public $storePath = '@app/uploads/store';
 
@@ -35,19 +34,19 @@ class Module extends \yii\base\Module
 
     public function registerTranslations()
     {
-        \Yii::$app->i18n->translations['nemmo/*'] = [
+        \Yii::$app->i18n->translations['mazpaijo/*'] = [
             'class' => PhpMessageSource::className(),
             'sourceLanguage' => 'en',
-            'basePath' => '@vendor/nemmo/yii2-attachments/src/messages',
+            'basePath' => '@vendor/mazpaijo/yii2-attachments/src/messages',
             'fileMap' => [
-                'nemmo/attachments' => 'attachments.php'
+                'mazpaijo/attachments' => 'attachments.php'
             ],
         ];
     }
 
     public static function t($category, $message, $params = [], $language = null)
     {
-        return \Yii::t('nemmo/' . $category, $message, $params, $language);
+        return \Yii::t('mazpaijo/' . $category, $message, $params, $language);
     }
 
     public function getStorePath()

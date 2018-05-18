@@ -6,7 +6,7 @@
  * Time: 12:24
  */
 
-namespace nemmo\attachments\behaviors;
+namespace mazpaijo\attachments\behaviors;
 
 use nemmo\attachments\models\File;
 use nemmo\attachments\ModuleTrait;

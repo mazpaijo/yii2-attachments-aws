@@ -1,11 +1,11 @@
 Yii2 attachments
 ================
-[![Latest Stable Version](https://poser.pugx.org/nemmo/yii2-attachments/v/stable)](https://packagist.org/packages/nemmo/yii2-attachments)
-[![License](https://poser.pugx.org/nemmo/yii2-attachments/license)](https://packagist.org/packages/nemmo/yii2-attachments)
-[![Build Status](https://scrutinizer-ci.com/g/Nemmo/yii2-attachments/badges/build.png?b=tests)](https://scrutinizer-ci.com/g/Nemmo/yii2-attachments/build-status/tests)
-[![Code Coverage](https://scrutinizer-ci.com/g/Nemmo/yii2-attachments/badges/coverage.png?b=tests)](https://scrutinizer-ci.com/g/Nemmo/yii2-attachments/?branch=tests)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Nemmo/yii2-attachments/badges/quality-score.png?b=tests)](https://scrutinizer-ci.com/g/Nemmo/yii2-attachments/?branch=tests)
-[![Total Downloads](https://poser.pugx.org/nemmo/yii2-attachments/downloads)](https://packagist.org/packages/nemmo/yii2-attachments)
+[![Latest Stable Version](https://poser.pugx.org/mazpaijo/yii2-attachments/v/stable)](https://packagist.org/packages/mazpaijo/yii2-attachments)
+[![License](https://poser.pugx.org/mazpaijo/yii2-attachments/license)](https://packagist.org/packages/mazpaijo/yii2-attachments)
+[![Build Status](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/badges/build.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/build-status/tests)
+[![Code Coverage](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/badges/coverage.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/?branch=tests)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/badges/quality-score.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/?branch=tests)
+[![Total Downloads](https://poser.pugx.org/mazpaijo/yii2-attachments/downloads)](https://packagist.org/packages/mazpaijo/yii2-attachments)
 
 Extension for file uploading and attaching to the models
 
@@ -21,13 +21,13 @@ Installation
 	Either run
 	
 	```
-	php composer.phar require nemmo/yii2-attachments "~1.0.0"
+	php composer.phar require mazpaijo/yii2-attachments "~1.0.0"
 	```
 	
 	or add
 	
 	```
-	"nemmo/yii2-attachments": "~1.0.0"
+	"mazpaijo/yii2-attachments": "~1.0.0"
 	```
 	
 	to the require section of your `composer.json` file.
@@ -38,7 +38,7 @@ Installation
 	'modules' => [
 		...
 		'attachments' => [
-			'class' => nemmo\attachments\Module::className(),
+			'class' => mazpaijo\attachments\Module::className(),
 			'tempPath' => '@app/uploads/temp',
 			'storePath' => '@app/uploads/store',
 			'rules' => [ // Rules according to the FileValidator
@@ -61,7 +61,7 @@ Installation
 		'migrate' => [
 			'class' => 'yii\console\controllers\MigrateController',
 			'migrationNamespaces' => [
-				'nemmo\attachments\migrations',
+				'mazpaijo\attachments\migrations',
 			],
 		],
 		...
@@ -80,7 +80,7 @@ Installation
 		return [
 			...
 			'fileBehavior' => [
-				'class' => \nemmo\attachments\behaviors\FileBehavior::className()
+				'class' => \mazpaijo\attachments\behaviors\FileBehavior::className()
 			]
 			...
 		];
@@ -97,7 +97,7 @@ Usage
 1. In the `form.php` of your model add file input
 	
 	```php
-	<?= \nemmo\attachments\components\AttachmentsInput::widget([
+	<?= \mazpaijo\attachments\components\AttachmentsInput::widget([
 		'id' => 'file-input', // Optional
 		'model' => $model,
 		'options' => [ // Options of the Kartik's FileInput widget
@@ -112,7 +112,7 @@ Usage
 2. Use widget to show all attachments of the model in the `view.php`
 	
 	```php
-	<?= \nemmo\attachments\components\AttachmentsTable::widget(['model' => $model]) ?>
+	<?= \mazpaijo\attachments\components\AttachmentsTable::widget(['model' => $model]) ?>
 	```
 
 3. (Deprecated) Add onclick action to your submit button that uploads all files before submitting form

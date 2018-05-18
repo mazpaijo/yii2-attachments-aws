@@ -1,6 +1,6 @@
 <?php
 
-namespace nemmo\attachments;
+namespace mazpaijo\attachments;
 
 /**
  * Created by PhpStorm.
