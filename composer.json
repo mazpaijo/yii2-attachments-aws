@@ -1,5 +1,5 @@
 {
-  "name": "nemmo/yii2-attachments",
+  "name": "mazpaijo/yii2-attachments",
   "description": "Extension for file uploading and attaching to the models",
   "type": "yii2-extension",
   "keywords": [
