@@ -8,8 +8,8 @@
 
 namespace mazpaijo\attachments\behaviors;
 
-use nemmo\attachments\models\File;
-use nemmo\attachments\ModuleTrait;
+use mazpaijo\attachments\models\File;
+use mazpaijo\attachments\ModuleTrait;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
