@@ -14,6 +14,7 @@ use yii\helpers\Url;
  * @property string $name
  * @property string $model
  * @property integer $itemId
+ * @property integer $userId
  * @property string $hash
  * @property integer $size
  * @property string $type
@@ -48,7 +49,7 @@ class File extends ActiveRecord
     {
         return [
             [['name', 'model', 'itemId', 'hash', 'size', 'type', 'mime'], 'required'],
-            [['itemId', 'size'], 'integer'],
+            [['itemId','userId', 'size'], 'integer'],
             [['name', 'model', 'hash', 'type', 'mime'], 'string', 'max' => 255]
         ];
     }
@@ -63,6 +64,7 @@ class File extends ActiveRecord
             'name' => 'Name',
             'model' => 'Model',
             'itemId' => 'Item ID',
+            'userId' => 'User ID',
             'hash' => 'Hash',
             'size' => 'Size',
             'type' => 'Type',

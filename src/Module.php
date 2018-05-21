@@ -133,10 +133,12 @@ class Module extends \yii\base\Module
             throw new Exception("Cannot copy file! $filePath  to $newFilePath");
         }
 
+
         $file = new File();
         $file->name = pathinfo($filePath, PATHINFO_FILENAME);
         $file->model = $this->getShortClass($owner);
         $file->itemId = $owner->id;
+        $file->userId = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
         $file->hash = $fileHash;
         $file->size = filesize($filePath);
         $file->type = $fileType;
