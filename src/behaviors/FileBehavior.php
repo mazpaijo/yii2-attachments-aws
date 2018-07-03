@@ -16,6 +16,7 @@ use yii\helpers\FileHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
+use app\helpers\ActiveUser;
 
 class FileBehavior extends Behavior
 {
