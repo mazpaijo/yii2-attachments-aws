@@ -10,6 +10,7 @@ use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use app\helpers\ActiveUser;
 
 class FileController extends Controller
 {
@@ -57,11 +58,33 @@ class FileController extends Controller
 
     public function actionDelete($id)
     {
+        //check user permission
+        if (!$this->checkPermission($id)){
+            Yii::$app->session->setFlash('error', "Anda tidak memiliki Permission untuk menghapus file ini / file tidak tersedia.");
+            return $this->goBack();
+        }
+
         if ($this->getModule()->detachFile($id)) {
-            return true;
+            Yii::$app->session->setFlash('success', "File berhasil di hapus.");
+            return $this->goBack();
         } else {
             return false;
         }
+    }
+
+    public function checkPermission($id){
+
+        $file = File::findOne(['id' => $id]);
+        $userID = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
+        if(ActiveUser::isAdmin() == TRUE){
+                return true;
+        } else
+        if ($file) {
+            if ($userID == $file->userId){
+                return true;
+            }
+        } return false;
+
     }
 
     public function actionDownloadTemp($filename)
