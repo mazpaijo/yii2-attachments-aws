@@ -12,7 +12,8 @@ use yii\db\ActiveRecord;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
-
+use mazpaijo\attachments\models\File;
+use app\helpers\ActiveUser;
 /**
  * Created by PhpStorm.
  * User: Алимжан
@@ -116,7 +117,21 @@ JS;
                                 ]
                             );
                         }
-                    ]
+                    ],
+                    'visibleButtons' => [
+                        'delete' => function($model){
+                            $file = File::findOne(['id' => $model->id]);
+                            $userID = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
+                            if(ActiveUser::isAdmin() == TRUE){
+                                return true;
+                            } else
+                            if ($file) {
+                                if ($userID == $file->userId){
+                                    return true;
+                                }
+                            } return false;
+                        },
+                    ],
                 ],
             ],
         ]) .
