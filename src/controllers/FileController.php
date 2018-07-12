@@ -74,16 +74,20 @@ class FileController extends Controller
 
     public function checkPermission($id){
 
-        $file = File::findOne(['id' => $id]);
+        $model = File::findOne(['id' => $id]);
         $userID = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
-        if(ActiveUser::isAdmin() == TRUE){
-                return true;
-        } else
-        if ($file) {
-            if ($userID == $file->userId){
-                return true;
-            }
-        } return false;
+
+        if (empty($model)) return false;
+
+       /* echo "<pre>";
+        print_r($model);
+        die;*/
+
+        if (Yii::$app->user->can('update-all-post') ||Yii::$app->user->can('update-terminal-post',$model) ||Yii::$app->user->can('update-own-post',$model)){
+            return true;
+        } else {
+            return false;
+        }
 
     }
 

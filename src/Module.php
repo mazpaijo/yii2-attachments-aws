@@ -138,7 +138,9 @@ class Module extends \yii\base\Module
         $file->name = pathinfo($filePath, PATHINFO_FILENAME);
         $file->model = $this->getShortClass($owner);
         $file->itemId = $owner->id;
+        $file->terminal_id = $owner->terminal_id;
         $file->userId = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
+        $file->created_by = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
         $file->hash = $fileHash;
         $file->size = filesize($filePath);
         $file->type = $fileType;

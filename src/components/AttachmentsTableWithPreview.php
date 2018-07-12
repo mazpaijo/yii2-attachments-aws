@@ -122,14 +122,13 @@ JS;
                         'delete' => function($model){
                             $file = File::findOne(['id' => $model->id]);
                             $userID = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
-                            if(ActiveUser::isAdmin() == TRUE){
+
+                            if (Yii::$app->user->can('update-all-post') ||Yii::$app->user->can('update-terminal-post',$model) ||Yii::$app->user->can('update-own-post',$model)){
                                 return true;
-                            } else
-                            if ($file) {
-                                if ($userID == $file->userId){
-                                    return true;
-                                }
-                            } return false;
+                            } else {
+                                return false;
+                            }
+
                         },
                     ],
                 ],

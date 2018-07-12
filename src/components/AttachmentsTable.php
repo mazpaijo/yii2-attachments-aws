@@ -98,7 +98,20 @@ JS;
                                 ]
                             );
                         }
-                    ]
+                    ],
+                    'visibleButtons' => [
+                        'delete' => function($model){
+                            $file = File::findOne(['id' => $model->id]);
+                            $userID = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
+
+                            if (Yii::$app->user->can('update-all-post') ||Yii::$app->user->can('update-terminal-post',$model) ||Yii::$app->user->can('update-own-post',$model)){
+                                return true;
+                            } else {
+                                return false;
+                            }
+
+                        },
+                    ],
                 ],
             ]
         ]);
