@@ -1,10 +1,10 @@
 <?php
 
-namespace mazpaijo\attachments\controllers;
+namespace mazpaijo\attachmentsAws\controllers;
 
-use mazpaijo\attachments\models\File;
-use mazpaijo\attachments\models\UploadForm;
-use mazpaijo\attachments\ModuleTrait;
+use mazpaijo\attachmentsAws\models\File;
+use mazpaijo\attachmentsAws\models\UploadForm;
+use mazpaijo\attachmentsAws\ModuleTrait;
 use Yii;
 use yii\helpers\FileHelper;
 use yii\web\Controller;

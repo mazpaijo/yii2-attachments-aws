@@ -1,6 +1,6 @@
 <?php
 
-namespace mazpaijo\attachments;
+namespace mazpaijo\attachmentsAws;
 
 /**
  * Created by PhpStorm.
@@ -23,7 +23,7 @@ trait ModuleTrait
     protected function getModule()
     {
         if ($this->_module == null) {
-            $this->_module = \Yii::$app->getModule('attachments');
+            $this->_module = \Yii::$app->getModule('attachments-aws');
         }
 
         if (!$this->_module) {

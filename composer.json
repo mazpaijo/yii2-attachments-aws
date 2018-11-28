@@ -1,5 +1,5 @@
 {
-  "name": "mazpaijo/yii2-attachments",
+  "name": "mazpaijo/yii2-attachments-aws",
   "description": "Extension for file uploading and attaching to the models",
   "type": "yii2-extension",
   "keywords": [
@@ -7,10 +7,11 @@
     "extension",
     "attachment",
     "file",
-    "upload"
+    "upload",
+    "aws"
   ],
   "license": "BSD-4-Clause",
-  "homepage": "https://github.com/mazpaijo/yii2-attachments",
+  "homepage": "https://github.com/mazpaijo/yii2-attachments-aws",
   "authors": [
     {
       "name": "Rico ulul ilmy aka mazpaijo",
@@ -31,7 +32,7 @@
   },
   "autoload": {
     "psr-4": {
-      "mazpaijo\\attachments\\": "src"
+      "mazpaijo\\attachments-aws\\": "src"
     }
   },
   "extra": {

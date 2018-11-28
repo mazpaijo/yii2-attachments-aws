@@ -1,10 +1,10 @@
 <?php
 
-namespace mazpaijo\attachments\components;
+namespace mazpaijo\attachmentsAws\components;
 
 use himiklab\colorbox\Colorbox;
-use mazpaijo\attachments\behaviors\FileBehavior;
-use mazpaijo\attachments\ModuleTrait;
+use mazpaijo\attachmentsAws\behaviors\FileBehavior;
+use mazpaijo\attachmentsAws\ModuleTrait;
 use Yii;
 use yii\bootstrap\Widget;
 use yii\data\ArrayDataProvider;
@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use mazpaijo\attachments\models\File;
+use mazpaijo\attachmentsAws\models\File;
 use app\helpers\ActiveUser;
 /**
  * Created by PhpStorm.
@@ -39,7 +39,7 @@ class AttachmentsTableWithPreview extends Widget
         if (!$this->model) {
             return Html::tag('div',
                 Html::tag('b',
-                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachments', 'The model cannot be empty.'
+                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachments-aws', 'The model cannot be empty.'
                 ),
                 [
                     'class' => 'alert alert-danger'
@@ -57,7 +57,7 @@ class AttachmentsTableWithPreview extends Widget
         if (!$hasFileBehavior) {
             return Html::tag('div',
                 Html::tag('b',
-                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachments', 'The behavior FileBehavior has not been attached to the model.'
+                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachments-aws', 'The behavior FileBehavior has not been attached to the model.'
                 ),
                 [
                     'class' => 'alert alert-danger'
@@ -94,7 +94,7 @@ JS;
                     'class' => 'yii\grid\SerialColumn'
                 ],
                 [
-                    'label' => $this->getModule()->t('attachments', 'File name'),
+                    'label' => $this->getModule()->t('attachments-aws', 'File name'),
                     'format' => 'raw',
                     'value' => function ($model) {
                         return Html::a("$model->name.$model->type", $model->getUrl(), [
@@ -113,7 +113,7 @@ JS;
                                 [
                                     'class' => 'delete-button',
                                     'title' => Yii::t('yii', 'Delete'),
-                                    'data-url' => Url::to(['/attachments/file/delete', 'id' => $model->id])
+                                    'data-url' => Url::to(['/attachments-aws/file/delete', 'id' => $model->id])
                                 ]
                             );
                         }

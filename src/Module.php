@@ -1,7 +1,7 @@
 <?php
-namespace mazpaijo\attachments;
+namespace mazpaijo\attachmentsAws;
 
-use mazpaijo\attachments\models\File;
+use mazpaijo\attachmentsAws\models\File;
 use yii\base\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -9,7 +9,7 @@ use yii\i18n\PhpMessageSource;
 
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'mazpaijo\attachments\controllers';
+    public $controllerNamespace = 'mazpaijo\attachmentsAws\controllers';
 
     public $storePath = '@app/uploads/store';
 
@@ -37,9 +37,9 @@ class Module extends \yii\base\Module
         \Yii::$app->i18n->translations['mazpaijo/*'] = [
             'class' => PhpMessageSource::className(),
             'sourceLanguage' => 'en',
-            'basePath' => '@vendor/mazpaijo/yii2-attachments/src/messages',
+            'basePath' => '@vendor/mazpaijo/yii2-attachments-aws/src/messages',
             'fileMap' => [
-                'mazpaijo/attachments' => 'attachments.php'
+                'mazpaijo/attachments-aws' => 'attachments-aws.php'
             ],
         ];
     }

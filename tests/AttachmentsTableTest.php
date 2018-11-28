@@ -8,7 +8,7 @@
 
 namespace tests;
 
-use nemmo\attachments\components\AttachmentsTable;
+use nemmo\attachments-aws\components\AttachmentsTable;
 use tests\models\Comment;
 use Yii;
 use yii\db\ActiveRecord;
@@ -36,12 +36,12 @@ class AttachmentsTableTest extends TestCase
 
         $types = ['png', 'txt', 'jpg'];
         $this->generateFiles($types);
-        Yii::$app->runAction('attachments/file/upload');
+        Yii::$app->runAction('attachments-aws/file/upload');
 
         $comment->save();
 
         Yii::$app->controller = new Controller('test', Yii::$app, ['action' => 'test']);
-        $response = Yii::$app->controller->render('attachments-table-view', [
+        $response = Yii::$app->controller->render('attachments-aws-table-view', [
             'model' => $comment
         ]);
 

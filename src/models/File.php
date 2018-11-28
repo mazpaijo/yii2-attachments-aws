@@ -1,8 +1,8 @@
 <?php
 
-namespace mazpaijo\attachments\models;
+namespace mazpaijo\attachmentsAws\models;
 
-use mazpaijo\attachments\ModuleTrait;
+use mazpaijo\attachmentsAws\ModuleTrait;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
@@ -31,7 +31,7 @@ class File extends ActiveRecord
      */
     public static function tableName()
     {
-        return Yii::$app->getModule('attachments')->tableName;
+        return Yii::$app->getModule('attachments-aws')->tableName;
     }
     
     /**
@@ -78,7 +78,7 @@ class File extends ActiveRecord
 
     public function getUrl()
     {
-        return Url::to(['/attachments/file/download', 'id' => $this->id]);
+        return Url::to(['/attachments-aws/file/download', 'id' => $this->id]);
     }
 
     public function getPath()

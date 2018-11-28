@@ -1,13 +1,13 @@
 <?php
 
-namespace mazpaijo\attachments\migrations;
+namespace mazpaijo\attachmentsAws\migrations;
 
 use yii\db\Migration;
 use yii\db\Schema;
 
-class m150127_040544_add_attachments extends Migration
+class m150127_040544_add_attachments-aws extends Migration
 {
-    use \mazpaijo\attachments\ModuleTrait;
+    use \mazpaijo\attachmentsAws\ModuleTrait;
 
     public function up()
     {

@@ -8,7 +8,7 @@
 
 namespace tests;
 
-use nemmo\attachments\components\AttachmentsInput;
+use nemmo\attachments-aws\components\AttachmentsInput;
 use tests\models\Comment;
 use Yii;
 use yii\web\Controller;
@@ -24,7 +24,7 @@ class AttachmentsInputTest extends TestCase
     public function testDefaultConfig()
     {
         Yii::$app->controller = new Controller('test', Yii::$app);
-        $response = Yii::$app->controller->render('attachments-input-view', [
+        $response = Yii::$app->controller->render('attachments-aws-input-view', [
             'model' => new Comment()
         ]);
 
@@ -44,7 +44,7 @@ class AttachmentsInputTest extends TestCase
         $comment->save();
 
         Yii::$app->controller = new Controller('test', Yii::$app);
-        $response = Yii::$app->controller->render('attachments-input-view', [
+        $response = Yii::$app->controller->render('attachments-aws-input-view', [
             'model' => $comment
         ]);
 
@@ -56,6 +56,6 @@ class AttachmentsInputTest extends TestCase
         $this->assertContains('kv-widgets.css', $response);
         $this->assertContains('file-preview-image', $response);
         $this->assertContains('file-preview-other', $response);
-        $this->assertContains('attachments%2Ffile%2Fdelete', $response);
+        $this->assertContains('attachments-aws%2Ffile%2Fdelete', $response);
     }
 }

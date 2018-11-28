@@ -1,11 +1,11 @@
-Yii2 attachments
+Yii2 attachments-aws
 ================
-[![Latest Stable Version](https://poser.pugx.org/mazpaijo/yii2-attachments/v/stable)](https://packagist.org/packages/mazpaijo/yii2-attachments)
-[![License](https://poser.pugx.org/mazpaijo/yii2-attachments/license)](https://packagist.org/packages/mazpaijo/yii2-attachments)
-[![Build Status](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/badges/build.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/build-status/tests)
-[![Code Coverage](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/badges/coverage.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/?branch=tests)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/badges/quality-score.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments/?branch=tests)
-[![Total Downloads](https://poser.pugx.org/mazpaijo/yii2-attachments/downloads)](https://packagist.org/packages/mazpaijo/yii2-attachments)
+[![Latest Stable Version](https://poser.pugx.org/mazpaijo/yii2-attachments-aws/v/stable)](https://packagist.org/packages/mazpaijo/yii2-attachments-aws)
+[![License](https://poser.pugx.org/mazpaijo/yii2-attachments-aws/license)](https://packagist.org/packages/mazpaijo/yii2-attachments-aws)
+[![Build Status](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments-aws/badges/build.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments-aws/build-status/tests)
+[![Code Coverage](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments-aws/badges/coverage.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments-aws/?branch=tests)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments-aws/badges/quality-score.png?b=tests)](https://scrutinizer-ci.com/g/mazpaijo/yii2-attachments-aws/?branch=tests)
+[![Total Downloads](https://poser.pugx.org/mazpaijo/yii2-attachments-aws/downloads)](https://packagist.org/packages/mazpaijo/yii2-attachments-aws)
 
 Extension for file uploading and attaching to the models
 
@@ -21,13 +21,13 @@ Installation
 	Either run
 	
 	```
-	php composer.phar require mazpaijo/yii2-attachments "~1.0.0"
+	php composer.phar require mazpaijo/yii2-attachments-aws "~1.0.0"
 	```
 	
 	or add
 	
 	```
-	"mazpaijo/yii2-attachments": "~1.0.0"
+	"mazpaijo/yii2-attachments-aws": "~1.0.0"
 	```
 	
 	to the require section of your `composer.json` file.
@@ -37,8 +37,8 @@ Installation
 	```php
 	'modules' => [
 		...
-		'attachments' => [
-			'class' => mazpaijo\attachments\Module::className(),
+		'attachments-aws' => [
+			'class' => mazpaijo\attachmentsAws\Module::className(),
 			'tempPath' => '@app/uploads/temp',
 			'storePath' => '@app/uploads/store',
 			'rules' => [ // Rules according to the FileValidator
@@ -46,7 +46,7 @@ Installation
 				'mimeTypes' => 'image/png', // Only png images
 				'maxSize' => 1024 * 1024 // 1 MB
 			],
-			'tableName' => '{{%attachments}}' // Optional, default to 'attach_file'
+			'tableName' => '{{%attachments-aws}}' // Optional, default to 'attach_file'
 		]
 		...
 	]
@@ -61,7 +61,7 @@ Installation
 		'migrate' => [
 			'class' => 'yii\console\controllers\MigrateController',
 			'migrationNamespaces' => [
-				'mazpaijo\attachments\migrations',
+				'mazpaijo\attachmentsAws\migrations',
 			],
 		],
 		...
@@ -80,7 +80,7 @@ Installation
 		return [
 			...
 			'fileBehavior' => [
-				'class' => \mazpaijo\attachments\behaviors\FileBehavior::className()
+				'class' => \mazpaijo\attachmentsAws\behaviors\FileBehavior::className()
 			]
 			...
 		];
@@ -97,7 +97,7 @@ Usage
 1. In the `form.php` of your model add file input
 	
 	```php
-	<?= \mazpaijo\attachments\components\AttachmentsInput::widget([
+	<?= \mazpaijo\attachmentsAws\components\AttachmentsInput::widget([
 		'id' => 'file-input', // Optional
 		'model' => $model,
 		'options' => [ // Options of the Kartik's FileInput widget
@@ -109,10 +109,10 @@ Usage
 	]) ?>
 	```
 
-2. Use widget to show all attachments of the model in the `view.php`
+2. Use widget to show all attachments-aws of the model in the `view.php`
 	
 	```php
-	<?= \mazpaijo\attachments\components\AttachmentsTable::widget(['model' => $model]) ?>
+	<?= \mazpaijo\attachmentsAws\components\AttachmentsTable::widget(['model' => $model]) ?>
 	```
 
 3. (Deprecated) Add onclick action to your submit button that uploads all files before submitting form

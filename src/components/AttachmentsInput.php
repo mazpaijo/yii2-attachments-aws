@@ -1,10 +1,10 @@
 <?php
 
-namespace mazpaijo\attachments\components;
+namespace mazpaijo\attachmentsAws\components;
 
 use kartik\file\FileInput;
-use mazpaijo\attachments\models\UploadForm;
-use mazpaijo\attachments\ModuleTrait;
+use mazpaijo\attachmentsAws\models\UploadForm;
+use mazpaijo\attachmentsAws\ModuleTrait;
 use yii\base\InvalidConfigException;
 use yii\bootstrap\Widget;
 use yii\helpers\FileHelper;
@@ -40,7 +40,7 @@ class AttachmentsInput extends Widget
         FileHelper::removeDirectory($this->getModule()->getUserDirPath()); // Delete all uploaded files in past
 
         $this->pluginOptions = array_replace($this->pluginOptions, [
-            'uploadUrl' => Url::toRoute('/attachments/file/upload'),
+            'uploadUrl' => Url::toRoute('/attachments-aws/file/upload'),
             'uploadAsync' => false
         ]);
         if(!isset($this->pluginOptions['initialPreview'])){

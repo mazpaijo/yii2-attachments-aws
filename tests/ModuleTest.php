@@ -8,7 +8,7 @@
 
 namespace tests;
 
-use nemmo\attachments\Module;
+use nemmo\attachments-aws\Module;
 use Yii;
 
 class ModuleTest extends TestCase
@@ -19,33 +19,33 @@ class ModuleTest extends TestCase
     {
         parent::setUp();
 
-        $this->_module = Yii::$app->getModule('attachments');
+        $this->_module = Yii::$app->getModule('attachments-aws');
     }
 
     protected function tearDown()
     {
-        Yii::$app->setModule('attachments', $this->_module);
+        Yii::$app->setModule('attachments-aws', $this->_module);
 
         parent::tearDown();
     }
 
     public function testInitException()
     {
-        Yii::$app->setModule('attachments', [
+        Yii::$app->setModule('attachments-aws', [
             'class' => Module::className(),
             'storePath' => ''
         ]);
         $this->setExpectedException('Exception', 'Setup {storePath} and {tempPath} in module properties');
-        Yii::$app->getModule('attachments');
+        Yii::$app->getModule('attachments-aws');
     }
 
     public function testInit()
     {
-        Yii::$app->setModule('attachments', [
+        Yii::$app->setModule('attachments-aws', [
             'class' => Module::className()
         ]);
         /** @var Module $module */
-        $module = Yii::$app->getModule('attachments');
+        $module = Yii::$app->getModule('attachments-aws');
         $this->assertEquals([
             'maxFiles' => 3
         ], $module->rules);
@@ -55,11 +55,11 @@ class ModuleTest extends TestCase
             'mimeTypes' => 'image/png',
             'maxSize' => 1024
         ];
-        Yii::$app->setModule('attachments', [
+        Yii::$app->setModule('attachments-aws', [
             'class' => Module::className(),
             'rules' => $newRules
         ]);
-        $module = Yii::$app->getModule('attachments');
+        $module = Yii::$app->getModule('attachments-aws');
         $this->assertEquals($newRules, $module->rules);
     }
 }
