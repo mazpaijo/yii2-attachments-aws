@@ -78,7 +78,7 @@ JS;
                     'class' => 'yii\grid\SerialColumn'
                 ],
                 [
-                    'label' => $this->getModule()->t('attachments-aws', 'File name'),
+                    'label' => $this->getModule()->t('attachmentsAws', 'File name'),
                     'format' => 'raw',
                     'value' => function ($model) {
                         return Html::a("$model->name.$model->type", $model->getUrl());
@@ -94,7 +94,7 @@ JS;
                                 [
                                     'class' => 'delete-button',
                                     'title' => Yii::t('yii', 'Delete'),
-                                    'data-url' => Url::to(['/attachments-aws/file/delete', 'id' => $model->id])
+                                    'data-url' => Url::to(['/attachmentsAws/file/delete', 'id' => $model->id])
                                 ]
                             );
                         }

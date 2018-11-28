@@ -5,7 +5,7 @@ namespace mazpaijo\attachmentsAws\migrations;
 use yii\db\Migration;
 use yii\db\Schema;
 
-class m150127_040544_add_attachments-aws extends Migration
+class m150127_040544_add_attachmentsAws extends Migration
 {
     use \mazpaijo\attachmentsAws\ModuleTrait;
 

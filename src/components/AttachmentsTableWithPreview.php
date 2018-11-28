@@ -39,7 +39,7 @@ class AttachmentsTableWithPreview extends Widget
         if (!$this->model) {
             return Html::tag('div',
                 Html::tag('b',
-                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachments-aws', 'The model cannot be empty.'
+                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachmentsAws', 'The model cannot be empty.'
                 ),
                 [
                     'class' => 'alert alert-danger'
@@ -57,7 +57,7 @@ class AttachmentsTableWithPreview extends Widget
         if (!$hasFileBehavior) {
             return Html::tag('div',
                 Html::tag('b',
-                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachments-aws', 'The behavior FileBehavior has not been attached to the model.'
+                    Yii::t('yii', 'Error')) . ': ' . $this->getModule()->t('attachmentsAws', 'The behavior FileBehavior has not been attached to the model.'
                 ),
                 [
                     'class' => 'alert alert-danger'
@@ -94,7 +94,7 @@ JS;
                     'class' => 'yii\grid\SerialColumn'
                 ],
                 [
-                    'label' => $this->getModule()->t('attachments-aws', 'File name'),
+                    'label' => $this->getModule()->t('attachmentsAws', 'File name'),
                     'format' => 'raw',
                     'value' => function ($model) {
                         return Html::a("$model->name.$model->type", $model->getUrl(), [
@@ -113,7 +113,7 @@ JS;
                                 [
                                     'class' => 'delete-button',
                                     'title' => Yii::t('yii', 'Delete'),
-                                    'data-url' => Url::to(['/attachments-aws/file/delete', 'id' => $model->id])
+                                    'data-url' => Url::to(['/attachmentsAws/file/delete', 'id' => $model->id])
                                 ]
                             );
                         }

@@ -82,7 +82,7 @@ class FileBehavior extends Behavior
         $userTempDir = $this->getModule()->getUserDirPath();
         foreach (FileHelper::findFiles($userTempDir) as $file) {
             if (substr(FileHelper::getMimeType($file), 0, 5) === 'image') {
-                $initialPreview[] = Html::img(['/attachments-aws/file/download-temp', 'filename' => basename($file)], ['class' => 'file-preview-image']);
+                $initialPreview[] = Html::img(['/attachmentsAws/file/download-temp', 'filename' => basename($file)], ['class' => 'file-preview-image']);
             } else {
                 $initialPreview[] = Html::beginTag('div', ['class' => 'file-preview-other']) .
                     Html::beginTag('h2') .
@@ -116,7 +116,7 @@ class FileBehavior extends Behavior
             $filename = basename($file);
             $initialPreviewConfig[] = [
                 'caption' => $filename,
-                'url' => Url::to(['/attachments-aws/file/delete-temp',
+                'url' => Url::to(['/attachmentsAws/file/delete-temp',
                     'filename' => $filename
                 ]),
             ];
@@ -125,7 +125,7 @@ class FileBehavior extends Behavior
         foreach ($this->getFiles() as $index => $file) {
             $initialPreviewConfig[] = [
                 'caption' => "$file->name.$file->type",
-                'url' => Url::toRoute(['/attachments-aws/file/delete',
+                'url' => Url::toRoute(['/attachmentsAws/file/delete',
                     'id' => $file->id
                 ]),
             ];
