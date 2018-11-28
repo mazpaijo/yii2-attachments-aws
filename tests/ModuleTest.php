@@ -19,7 +19,7 @@ class ModuleTest extends TestCase
     {
         parent::setUp();
 
-        $this->_module = Yii::$app->getModule('attachments-aws');
+        $this->_module = Yii::$app->getModule('attachments');
     }
 
     protected function tearDown()
@@ -36,7 +36,7 @@ class ModuleTest extends TestCase
             'storePath' => ''
         ]);
         $this->setExpectedException('Exception', 'Setup {storePath} and {tempPath} in module properties');
-        Yii::$app->getModule('attachments-aws');
+        Yii::$app->getModule('attachments');
     }
 
     public function testInit()
@@ -45,7 +45,7 @@ class ModuleTest extends TestCase
             'class' => Module::className()
         ]);
         /** @var Module $module */
-        $module = Yii::$app->getModule('attachments-aws');
+        $module = Yii::$app->getModule('attachments');
         $this->assertEquals([
             'maxFiles' => 3
         ], $module->rules);
@@ -59,7 +59,7 @@ class ModuleTest extends TestCase
             'class' => Module::className(),
             'rules' => $newRules
         ]);
-        $module = Yii::$app->getModule('attachments-aws');
+        $module = Yii::$app->getModule('attachments');
         $this->assertEquals($newRules, $module->rules);
     }
 }

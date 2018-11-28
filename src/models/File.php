@@ -31,7 +31,7 @@ class File extends ActiveRecord
      */
     public static function tableName()
     {
-        return Yii::$app->getModule('attachments-aws')->tableName;
+        return Yii::$app->getModule('attachments')->tableName;
     }
     
     /**

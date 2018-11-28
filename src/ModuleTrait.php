@@ -23,7 +23,7 @@ trait ModuleTrait
     protected function getModule()
     {
         if ($this->_module == null) {
-            $this->_module = \Yii::$app->getModule('attachmentsAws');
+            $this->_module = \Yii::$app->getModule('attachments');
         }
 
         if (!$this->_module) {
