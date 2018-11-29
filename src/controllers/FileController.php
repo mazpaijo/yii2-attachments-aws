@@ -51,9 +51,9 @@ class FileController extends Controller
     public function actionDownload($id)
     {
         $file = File::findOne(['id' => $id]);
-        $filePath = $this->getModule()->getFilesDirPath($file->hash) . DIRECTORY_SEPARATOR . $file->hash . '.' . $file->type;
-
-        return Yii::$app->response->sendFile($filePath, "$file->name.$file->type");
+        $filePath = $this->getModule()->getFilesDirPathAws($file->hash) . DIRECTORY_SEPARATOR . $file->hash . '.' . $file->type;
+        $content = Yii::$app->awss3Fs->read("attachments".DIRECTORY_SEPARATOR.$filePath);
+        return Yii::$app->response->sendContentAsFile($content, "$file->name.$file->type");
     }
 
     public function actionDelete($id)
@@ -64,7 +64,7 @@ class FileController extends Controller
             return $this->goBack();
         }
 
-        if ($this->getModule()->detachFile($id)) {
+        if ($this->getModule()->detachFileAws($id)) {
             Yii::$app->session->setFlash('success', "File berhasil di hapus.");
             return $this->goBack();
         } else {
@@ -79,9 +79,6 @@ class FileController extends Controller
 
         if (empty($model)) return false;
 
-       /* echo "<pre>";
-        print_r($model);
-        die;*/
 
         if (Yii::$app->user->can('update-all-post') ||Yii::$app->user->can('update-terminal-post',$model) ||Yii::$app->user->can('update-own-post',$model)){
             return true;

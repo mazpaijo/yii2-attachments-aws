@@ -78,11 +78,11 @@ class File extends ActiveRecord
 
     public function getUrl()
     {
-        return Url::to(['/attachments-aws/file/download', 'id' => $this->id]);
+        return Url::to(['/attachments/file/download', 'id' => $this->id]);
     }
 
     public function getPath()
     {
-        return $this->getModule()->getFilesDirPath($this->hash) . DIRECTORY_SEPARATOR . $this->hash . '.' . $this->type;
+        return $this->getModule()->getFilesDirPathAws($this->hash) . DIRECTORY_SEPARATOR . $this->hash . '.' . $this->type;
     }
 }

@@ -45,7 +45,7 @@ class FileBehavior extends Behavior
 
         $userTempDir = $this->getModule()->getUserDirPath();
         foreach (FileHelper::findFiles($userTempDir) as $file) {
-            if (!$this->getModule()->attachFile($file, $this->owner)) {
+            if (!$this->getModule()->attachFileAws($file, $this->owner)) {
                 throw new \Exception(\Yii::t('yii', 'File upload failed.'));
             }
         }
@@ -55,7 +55,7 @@ class FileBehavior extends Behavior
     public function deleteUploads($event)
     {
         foreach ($this->getFiles() as $file) {
-            $this->getModule()->detachFile($file->id);
+            $this->getModule()->detachFileAws($file->id);
         }
     }
 

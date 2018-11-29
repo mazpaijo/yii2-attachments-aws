@@ -94,7 +94,7 @@ JS;
                                 [
                                     'class' => 'delete-button',
                                     'title' => Yii::t('yii', 'Delete'),
-                                    'data-url' => Url::to(['/attachmentsAws/file/delete', 'id' => $model->id])
+                                    'data-url' => Url::to(['/attachments/file/delete', 'id' => $model->id])
                                 ]
                             );
                         }

@@ -71,6 +71,13 @@ class Module extends \yii\base\Module
 
         return $path;
     }
+    public function getFilesDirPathAws($fileHash)
+    {
+        $path = $this->getSubDirs($fileHash);
+        //FileHelper::createDirectory($path);
+
+        return $path;
+    }
 
     public function getSubDirs($fileHash, $depth = 3)
     {
@@ -154,6 +161,41 @@ class Module extends \yii\base\Module
         }
     }
 
+    public function attachFileAws($filePath, $owner)
+    {
+        if (empty($owner->id)) {
+            throw new Exception('Parent model must have ID when you attaching a file');
+        }
+
+        $fileHash = md5(microtime(true) . $filePath);
+        $fileType = pathinfo($filePath, PATHINFO_EXTENSION);
+        $newFileName = "$fileHash.$fileType";
+        $fileDirPath = $this->getFilesDirPathAws($fileHash);
+        $newFilePath = $fileDirPath . DIRECTORY_SEPARATOR . $newFileName;
+        //\Yii::$app->awss3Fs->createDir($fileDirPath);
+        $stream = fopen($filePath, 'r+');
+        \Yii::$app->awss3Fs->write("attachments".DIRECTORY_SEPARATOR.$newFilePath,$stream);
+        fclose($stream);
+        $file = new File();
+        $file->name = pathinfo($filePath, PATHINFO_FILENAME);
+        $file->model = $this->getShortClass($owner);
+        $file->itemId = $owner->id;
+        $file->terminal_id = $owner->terminal_id;
+        $file->userId = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
+        $file->created_by = (\Yii::$app->user->isGuest) ? "" : \Yii::$app->user->identity->id;
+        $file->hash = $fileHash;
+        $file->size = filesize($filePath);
+        $file->type = $fileType;
+        $file->mime = FileHelper::getMimeType($filePath);
+
+        if ($file->save()) {
+            unlink($filePath);
+            return $file;
+        } else {
+            return false;
+        }
+    }
+
     public function detachFile($id)
     {
         /** @var File $file */
@@ -164,5 +206,20 @@ class Module extends \yii\base\Module
         // this is the important part of the override.
         // the original methods doesn't check for file_exists to be 
         return file_exists($filePath) ? unlink($filePath) && $file->delete() : $file->delete();
+    }
+
+    public function detachFileAws($id){
+        /** @var File $file */
+        $file = File::findOne(['id' => $id]);
+        if (empty($file)) return false;
+        $filePath = $this->getFilesDirPathAws($file->hash) . DIRECTORY_SEPARATOR . $file->hash . '.' . $file->type;
+        $exists = \Yii::$app->awss3Fs->has("attachments".DIRECTORY_SEPARATOR.$filePath);
+        $file->delete();
+        if ($exists){
+            \Yii::$app->awss3Fs->delete("attachments".DIRECTORY_SEPARATOR.$filePath);
+        }
+
+        return true;
+
     }
 }
